@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спрайты - наинтереснейшие географические явления нашей планеты</title>
+    <meta name="description" content="На данном сайте рассказывается о спрайтах, которые остаются малоизученными даже на пике современных технологий. Спрайты демонстрируют сложность и многогранность нашей планеты.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e6e6e6;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 150, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(100, 100, 255, 0.05) 0%, transparent 30%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300% 300%;
+            animation: gradientShift 8s ease infinite;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: titleAppear 1.5s ease-out forwards;
+        }
+
+        @keyframes titleAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: textAppear 1.5s ease-out 0.3s forwards;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        @keyframes textAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: rgba(25, 25, 45, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #4ecdc4;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            border-radius: 3px;
+        }
+
+        .card p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .author {
+            text-align: center;
+            font-size: 1.4rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(40, 40, 60, 0.6);
+            border-radius: 10px;
+            border: 1px solid rgba(100, 100, 255, 0.3);
+        }
+
+        .author-name {
+            display: inline-block;
+            font-weight: bold;
+            font-size: 1.6rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300% 300%;
+            animation: rainbow 4s ease infinite;
+            padding: 0 10px;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            background: rgba(30, 30, 50, 0.6);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #4ecdc4;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            background: rgba(40, 40, 60, 0.8);
+        }
+
+        .feature h3 {
+            color: #45b7d1;
+            margin-bottom: 0.5rem;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .thank-you {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(45deg, rgba(78, 205, 196, 0.2), rgba(69, 183, 209, 0.2));
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .thank-you span {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">Спрайты - наинтереснейшие географические явления нашей планеты</h1>
+            <p class="subtitle">На данном сайте рассказывается о спрайтах, которые остаются малоизученными даже на пике современных технологий. Спрайты демонстрируют сложность и многогранность нашей планеты.</p>
+        </header>
+
+        <div class="card floating">
+            <h2>Спрайты: Загадочные Молнии из Космоса</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>Высокогорные Разряды</h3>
+                    <p>Спрайты — это электрические разряды, возникающие в мезосфере (50-90 км) над грозовыми облаками. Они бьют вверх, достигая границы с космосом.</p>
+                </div>
+                <div class="feature">
+                    <h3>Окраска и Форма</h3>
+                    <p>Эти вспышки имеют красную или синюю окраску и часто напоминают медуз, моркови или колонны, благодаря своим гигантским, но короткоживущим формам.</p>
+                </div>
+                <div class="feature">
+                    <h3>"Холодные" Разряды</h3>
+                    <p>В отличие от обычных молний, спрайты являются "холодными" разрядами, не образующими горячих каналов плазмы. Они длятся всего миллисекунды, что затрудняет их изучение.</p>
+                </div>
+                <div class="feature">
+                    <h3>Случайное Открытие</h3>
+                    <p>Впервые документально зафиксированы в 1989 году, хотя пилоты сообщали о них задолго до этого, но их рассказы часто считались вымыслом.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>География и Условия Наблюдения</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>Где и Когда Увидеть?</h3>
+                    <p>Спрайты возникают над мощными грозовыми комплексами (МКС). Для наблюдения необходимы полная темнота, отсутствие светового загрязнения и чистый горизонт.</p>
+                </div>
+                <div class="feature">
+                    <h3>Основные Регионы</h3>
+                    <p>Чаще всего спрайты фиксируют в регионах с высокой частотой МКС: Великие равнины США, бассейн Конго и прибрежные зоны со столкновением воздушных масс.</p>
+                </div>
+                <div class="feature">
+                    <h3>Сложности Изучения</h3>
+                    <p>Из-за мгновенной длительности (доли секунды) для регистрации требуются высокоскоростные камеры и наблюдение с больших расстояний над грозой. Это ограничивает прямые наблюдения.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Физико-Географический Механизм Образования</h2>
+            <p>Процесс формирования спрайтов начинается с обычной, но очень мощной молнии, бьющей из грозового облака в землю. Этот разряд вызывает резкое изменение электрического поля в верхних слоях атмосферы.</p>
+            <div class="features">
+                <div class="feature">
+                    <h3>Мощный Разряд</h3>
+                    <p>Интенсивная молния типа "земля-облако" создает дефицит положительного заряда в верхних слоях грозового облака.</p>
+                </div>
+                <div class="feature">
+                    <h3>Изменение Электрического Поля</h3>
+                    <p>Это приводит к резкому перераспределению электрического поля в мезосфере, создавая условия для пробоя.</p>
+                </div>
+                <div class="feature">
+                    <h3>Возбуждение Молекул</h3>
+                    <p>Электроны в разреженном воздухе мезосферы ускоряются, сталкиваясь с молекулами азота (N₂) и кислорода (O₂), возбуждая их.</p>
+                </div>
+                <div class="feature">
+                    <h3>Свечение</h3>
+                    <p>Возбужденные молекулы азота испускают свечение, возвращаясь в основное энергетическое состояние, порождая красное или сине-зеленое свечение спрайтов.</p>
+                </div>
+                <div class="feature">
+                    <h3>Формирование Структуры</h3>
+                    <p>В результате этих процессов формируется характерная структура спрайта: яркий красный купол и тонкие синие нити, напоминающие медузу.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img src="https://media.licdn.com/dms/image/sync/v2/D5627AQH3aKXMNpDZyA/articleshare-shrink_1280_800/articleshare-shrink_1280_800/0/1742314612429?e=2147483647&v=beta&t=NGdoDPDluM54C3H1DEqZODcq3Gxv2FLYbW_uXKufeAc" alt="Спрайты: Красота и Наука">
+        </div>
+
+        <div class="card">
+            <h2>Электрическое Шоу: Красота и Наука Спрайтов</h2>
+            <p>Спрайты — это не только впечатляющее зрелище, но и ключевой элемент для понимания электрических процессов нашей планеты. Их изучение помогает раскрыть скрытые аспекты взаимодействия Земли с атмосферой и космосом.</p>
+            <p>Эти редкие и мощные атмосферные явления, возникающие высоко над грозовыми облаками, демонстрируют сложную физику и химию нашей верхней атмосферы.</p>
+        </div>
+
+        <div class="card">
+            <h2>Научное Значение и Нерешённые Вопросы</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>Влияние на Химический Состав</h3>
+                    <p>Спрайты могут влиять на концентрацию оксидов азота и других соединений в мезосфере, потенциально воздействуя на озоновый слой.</p>
+                </div>
+                <div class="feature">
+                    <h3>Взаимосвязь с Явлениями TLE</h3>
+                    <p>Они связаны с другими транзиентными световыми явлениями (TLE), такими как эльфы и джеты, что помогает воссоздать полную картину электрических процессов в атмосфере.</p>
+                </div>
+                <div class="feature">
+                    <h3>Роль в Глобальной Цепи</h3>
+                    <p>Спрайты являются частью глобальной электрической цепи Земли, перенося заряд между поверхностью и ионосферой, что важно для энергетического баланса.</p>
+                </div>
+                <div class="feature">
+                    <h3>Нерешённые Вопросы</h3>
+                    <p>Учёные до сих пор не знают, какие типы молний порождают спрайты, каково их точное влияние на озоновый слой и каков их полный энергетический вклад.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Методы Изучения и Современные Исследования</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>Компьютерное Моделирование</h3>
+                </div>
+                <div class="feature">
+                    <h3>Высокоскоростные Камеры</h3>
+                </div>
+                <div class="feature">
+                    <h3>Специализированные Самолёты</h3>
+                </div>
+                <div class="feature">
+                    <h3>Наблюдения с МКС</h3>
+                </div>
+            </div>
+            <p>Изучение спрайтов — активная область исследований, применяющая передовые технологии. МКС предоставляет глобальный обзор, самолёты собирают детальные данные, а высокоскоростные камеры фиксируют мгновенные вспышки. Компьютерное моделирование воспроизводит условия возникновения.</p>
+        </div>
+
+        <div class="card">
+            <h2>Удивительные Факты о Спрайтах</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>Гигантские Размеры</h3>
+                    <p>Спрайты могут достигать колоссальных размеров — до 100 километров в диаметре, что делает их одними из крупнейших электрических разрядов в атмосфере Земли.</p>
+                </div>
+                <div class="feature">
+                    <h3>Позднее Открытие</h3>
+                    <p>Несмотря на свои гигантские размеры, спрайты были впервые документально зафиксированы лишь в 1989 году учёными из Миннесотского университета, что подчёркивает их неуловимость.</p>
+                </div>
+                <div class="feature">
+                    <h3>Долгие Свидетельства</h3>
+                    <p>До официального открытия пилоты на протяжении десятилетий сообщали о необычных вспышках, но их свидетельства часто игнорировались из-за отсутствия научного объяснения.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Спрайты: Мост Между Небом и Космосом</h2>
+            <p>Спрайты — это больше, чем просто мгновенные атмосферные явления. Они являются живым напоминанием о бесконечной красоте и сложности нашей планеты, связующим звеном между привычным земным небом и бескрайним космосом.</p>
+            <p>Каждое их появление вдохновляет нас на дальнейшие исследования, расширяя границы познания и открывая новые горизонты в изучении атмосферы Земли.</p>
+        </div>
+
+        <div class="author">
+            Сайт сделан учеником 7 "В" класса <span class="author-name">Ефремовым Валентином</span>
+        </div>
+
+        <div class="thank-you">
+            Спасибо за <span>внимание!</span>
+        </div>
+    </div>
+
+    <footer>
+        <p>© Декабрь 2025 ГАУ КО ОО ШИЛИ | Специально для любимой учительницы географии - Юлии Николаевны. </p>
+    </footer>
+
+    <script>
+        // Animation for cards appearing when scrolled into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Add animation to title immediately
+            document.querySelector('.title').style.animation = 'titleAppear 1.5s ease-out forwards';
+            document.querySelector('.subtitle').style.animation = 'textAppear 1.5s ease-out 0.3s forwards';
+        });
+    </script>
+</body>
+</html>
